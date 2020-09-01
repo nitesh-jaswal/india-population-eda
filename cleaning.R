@@ -16,7 +16,8 @@ india_historical_data = read.xlsx2("data/raw/Census since 1901.xls", startRow = 
 names(india_historical_data) <- c("State.Code", "District.Code", "Geographical.Unit", "Census.Year", "Population", "Variation.Absolute", "Variation.Percentage", "Males", "Females")
 
 india_historical_data_cleaned <- india_historical_data %>% dplyr::select(-2, -6, -7)
-india_historical_data_cleaned$Census.Year <- gsub("[$@+#]+", "", x = india_historical_data_cleaned$Census.Year) %>% trimws(which = "both")
+india_historical_data_cleaned$Census.Year <- gsub("[$@*+#]+", "", x = india_historical_data_cleaned$Census.Year) %>% trimws(which = "both")
+india_historical_data_cleaned$Geographical.Unit <- gsub("[$@*+#]+", "", x = india_historical_data_cleaned$Geographical.Unit) %>% trimws(which = "both")
 
 # Remove empty/blank rows
 # Source: https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r/37322563#37322563
